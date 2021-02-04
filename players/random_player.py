@@ -1,7 +1,7 @@
 from random import randint
 
 from .player import Player
-from proprietys import Propriety
+from proprieties import Propriety
 
 
 class RandomPlayer(Player):

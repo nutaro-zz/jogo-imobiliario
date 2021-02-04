@@ -1,5 +1,5 @@
 from .player import Player
-from proprietys import Propriety
+from proprieties import Propriety
 
 
 class DemandingPlayer(Player):

@@ -1,4 +1,5 @@
-from proprietys import Propriety
+from proprieties import Propriety
+
 
 class Player:
 

@@ -1,14 +1,14 @@
 from random import randint
 
 from players import Player
-from proprietys import Propriety
+from proprieties import Propriety
 
 
 class Maze:
 
-    def __int__(self, propriety: list, players: list):
-        self._size = len(propriety)
-        self._propriety = propriety
+    def __int__(self, proprieties: list, players: list):
+        self._size = len(proprieties)
+        self._propriety = proprieties
         self._players = players
         self._round_number = 0
         self._max_rounds = 1000
@@ -24,10 +24,10 @@ class Maze:
 
     def run(self):
         for x in range(0, self._max_rounds):
-            self.round_number = x + 1
             losers = []
             if len(self._players) == 1:
                 break
+            self.round_number = x + 1
             for count, player in enumerate(self._players):
                 self.move_player(player)
                 index = player.position - 1
@@ -49,12 +49,10 @@ class Maze:
         for propriety in player.owned_propriety:
             propriety.owner = None
 
-    @staticmethod
-    def move_player(player: Player) -> None:
-        steps = randint(1, 6)
-        new_position = player.position + steps
-        if new_position > 20:
-            new_position -= 20
+    def move_player(self, player: Player) -> None:
+        new_position = player.position + randint(1, 6)
+        if new_position > len(self._propriety):
+            new_position -= len(self._propriety)
         player.position = new_position
 
     @staticmethod
