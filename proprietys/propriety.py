@@ -23,7 +23,7 @@ class Propriety:
     @owner.setter
     def owner(self, value: Player) -> None:
         if self.has_owner():
-            raise ValueError("Property has owner")
+            raise ValueError("Propriety has owner")
         self.__owner = value
 
     def has_owner(self) -> bool:
