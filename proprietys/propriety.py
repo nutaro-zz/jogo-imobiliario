@@ -1,6 +1,3 @@
-from players import Player
-
-
 class Propriety:
 
     def __init__(self, cost: int, rent: int, **kwargs):
@@ -17,11 +14,11 @@ class Propriety:
         return self.__rent
 
     @property
-    def owner(self) -> Player:
+    def owner(self):
         return self.__owner
 
     @owner.setter
-    def owner(self, value: Player) -> None:
+    def owner(self, value) -> None:
         if self.has_owner():
             raise ValueError("Propriety has owner")
         self.__owner = value

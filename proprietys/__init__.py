@@ -1,3 +1,3 @@
-from propriety import Propriety
+from .propriety import Propriety
 
 __all__ = ['Propriety']

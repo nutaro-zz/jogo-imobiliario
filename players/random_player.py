@@ -1,6 +1,6 @@
 from random import randint
 
-from players import Player
+from .player import Player
 from proprietys import Propriety
 
 
