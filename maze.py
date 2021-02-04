@@ -25,6 +25,7 @@ class Maze:
     def run(self):
         for x in range(0, self._max_rounds):
             self.round_number = x + 1
+            losers = []
             if len(self._players) == 1:
                 break
             for count, player in enumerate(self._players):
@@ -32,9 +33,21 @@ class Maze:
                 index = player.position - 1
                 self.handle_propriety(player, self._propriety[index])
                 if player.money < 0:
-                    del self._players[count]
+                    self.remove_proprieties(player)
+                    losers.append(count)
+            self.remove_players(losers)
         else:
             self.time_out = True
+
+    def remove_players(self, losers: list) -> None:
+        losers.sort(reverse=True)
+        for x in losers:
+            self._players.pop(x)
+
+    @staticmethod
+    def remove_proprieties(player: Player) -> None:
+        for propriety in player.owned_propriety:
+            propriety.owner = None
 
     @staticmethod
     def move_player(player: Player) -> None:
