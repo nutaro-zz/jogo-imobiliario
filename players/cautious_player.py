@@ -6,6 +6,5 @@ class CautiousPlayer(Player):
 
     def buy_propriety(self, propriety: Propriety) -> None:
         money_after_purchase = self.money - propriety.cost
-        if money_after_purchase < 80:
-            return
-        super().buy_propriety(property)
+        if money_after_purchase >= 80:
+            super().buy_propriety(propriety)
