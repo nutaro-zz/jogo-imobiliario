@@ -23,7 +23,7 @@ class Player:
     def receive_rent(self, value: int) -> None:
         self._money += value
 
-    def buy_property(self, propriety: Propriety) -> None:
+    def buy_propriety(self, propriety: Propriety) -> None:
         self._money -= propriety.cost
         self._owned_propriety.append(propriety)
         propriety.owner = self
