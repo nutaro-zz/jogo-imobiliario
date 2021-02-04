@@ -22,6 +22,10 @@ class Maze:
     def round_number(self, value: int) -> None:
         self._round_number = value
 
+    @property
+    def players(self) -> list:
+        return self._players
+
     def run(self):
         for x in range(0, self._max_rounds):
             losers = []
