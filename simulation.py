@@ -38,7 +38,7 @@ def calculate_percentage(score: dict, number_of_rounds: int) -> dict:
     percentage = defaultdict(int)
     for player in score:
         won_rounds = score[player] * 100
-        percentage[player] = round(won_rounds / number_of_rounds, 2)
+        percentage[player] = won_rounds / number_of_rounds
     return percentage
 
 
@@ -59,7 +59,7 @@ def simulate() -> None:
         if maze.time_out:
             time_out += 1
     winner_behavior = calculate_winner_behavior(score)
-    average = round(round_amount / 300, 2)
+    average = round_amount / 300
     print()
     print_percentage(calculate_percentage(score, 300))
     print()
