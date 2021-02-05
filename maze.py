@@ -6,7 +6,7 @@ from proprieties import Propriety
 
 class Maze:
 
-    def __int__(self, proprieties: list, players: list):
+    def __init__(self, proprieties: list, players: list):
         self._size = len(proprieties)
         self._propriety = proprieties
         self._players = players
@@ -23,16 +23,25 @@ class Maze:
         self._round_number = value
 
     @property
+    def winner(self) -> Player:
+        winner = None
+        for player in self.players:
+            if winner is None:
+                winner = player
+                continue
+            if player.money > winner.money:
+                winner = player
+        return winner
+
+    @property
     def players(self) -> list:
         return self._players
 
     def run(self):
         for x in range(0, self._max_rounds):
             losers = []
-            if len(self._players) == 1:
-                break
             self.round_number = x + 1
-            for count, player in enumerate(self._players):
+            for count, player in enumerate(self.players):
                 self.move_player(player)
                 index = player.position - 1
                 self.handle_propriety(player, self._propriety[index])
@@ -40,13 +49,15 @@ class Maze:
                     self.remove_proprieties(player)
                     losers.append(count)
             self.remove_players(losers)
+            if len(self.players) == 1:
+                break
         else:
             self.time_out = True
 
     def remove_players(self, losers: list) -> None:
         losers.sort(reverse=True)
         for x in losers:
-            self._players.pop(x)
+            self.players.pop(x)
 
     @staticmethod
     def remove_proprieties(player: Player) -> None:
@@ -57,6 +68,7 @@ class Maze:
         new_position = player.position + randint(1, 6)
         if new_position > len(self._propriety):
             new_position -= len(self._propriety)
+            player.money = player.money + 100
         player.position = new_position
 
     @staticmethod
@@ -64,4 +76,5 @@ class Maze:
         if propriety.has_owner():
             player.pay_rent(propriety.rent, propriety.owner)
             return
-        player.buy_propriety(propriety)
+        if not propriety.has_owner():
+            player.buy_propriety(propriety)

@@ -19,8 +19,6 @@ class Propriety:
 
     @owner.setter
     def owner(self, value) -> None:
-        if self.has_owner():
-            raise ValueError("Propriety has owner")
         self.__owner = value
 
     def has_owner(self) -> bool:

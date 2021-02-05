@@ -17,8 +17,12 @@ class Player:
         self._position = value
 
     @property
-    def money(self):
+    def money(self) -> int:
         return self._money
+
+    @money.setter
+    def money(self, value: int) -> None:
+        self._money = value
 
     @property
     def owned_propriety(self) -> list:
