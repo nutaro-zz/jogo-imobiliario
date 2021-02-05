@@ -44,7 +44,7 @@ def calculate_percentage(score: dict, number_of_rounds: int) -> dict:
 
 def print_percentage(percentage: dict) -> None:
     for player in percentage:
-        print(f"The {player} won {percentage[player]} of the matches")
+        print(f"The {player} won {percentage[player]}% of the matches")
 
 
 def simulate() -> None:
